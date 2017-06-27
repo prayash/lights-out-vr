@@ -2,6 +2,7 @@
   "name": "lights-out-vr",
   "version": "0.0.1",
   "description": "Lights Out with A-Frame and React.",
+  "homepage": "http://effulgence.io/lights-out-vr",
   "dependencies": {
     "aframe": "^0.5.0",
     "aframe-animation-component": "^3.2.5",
@@ -39,7 +40,6 @@
   "bugs": {
     "url": "https://github.com/prayasht/lights-out-vr/issues"
   },
-  "homepage": "https://github.com/prayasht/lights-out-vr#readme",
   "devDependencies": {
     "gh-pages": "^0.12.0"
   }
