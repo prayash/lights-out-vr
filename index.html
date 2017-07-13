@@ -9,22 +9,13 @@
   <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
   <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
   <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
-  <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
+  <script src="https://unpkg.com/aframe-template-component@^3.2.1/dist/aframe-template-component.min.js"></script>
   <script src="components/set-image.js"></script>
-  <script src="app.js"></script>
 </head>
 
 <body>
   <a-scene>
     <a-assets>
-      <img id="city" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
-      <img id="city-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
-
-      <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
-      <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-
-      <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
-      <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
 
       <img id="bg" crossorigin="anonymous" src="assets/img/bg.jpg">
       <img id="light-thumb" crossorigin="anonymous" src="assets/img/light.jpg">
@@ -49,10 +40,6 @@
       <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
       <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
       <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
-
-      <!--<a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
-      <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
-      <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>-->
     </a-entity>
 
     <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1.5 -4">
@@ -95,6 +82,68 @@
       </a-entity>
     </a-entity>
   </a-scene>
+
+  <script>
+    var scene = document.querySelector('a-scene')
+    var camera = document.querySelector('[camera]')
+
+    // ************************************************************************
+
+    // AFRAME.registerComponent('cb', {
+    //   init: function () {
+    //     console.info('Ready!')
+    //   }
+    // })
+
+    var matrix = [
+      [1, 1, 0, 1, 1],
+      [1, 0, 1, 0, 1],
+      [0, 1, 1, 1, 0],
+      [1, 0, 1, 0, 1],
+      [1, 1, 0, 1, 1]
+    ]
+
+    var yPos = 0
+
+    // for (var j of matrix) {
+    //   var row = document.createElement('a-entity')
+    //   var rowPosition = '0 ' + yPos.toString() + ' -4'
+
+    //   row.setAttribute('id', 'links')
+    //   row.setAttribute('layout', 'type', 'line')
+    //   row.setAttribute('layout', 'margin', 1.5)
+    //   row.setAttribute('position', rowPosition)
+    //   row.flushToDOM(false)
+    //   scene.appendChild(row)
+    //   yPos -= 1.5
+
+    //   for (var i of j) {
+    //     var light = document.createElement('a-entity')
+
+    //     // light.setAttribute('cb', '')
+    //     light.dataset.src = '#bg'
+    //     light.dataset.thumb = '#light-thumb'
+    //     light.setAttribute('template', 'src', ' #link')
+    //     light.flushToDOM(false)
+    //     row.appendChild(light)
+    //   }
+    // }
+
+    camera.setAttribute('wasd-controls', true)
+
+    // AFRAME.registerComponent('scale-on-mouseenter', {
+    //   schema: {
+    //     to: { default: '2.5 2.5 2.5' }
+    //   },
+
+    //   init: function () {
+    //     var data = this.data;
+    //     this.el.addEventListener('mouseenter', function () {
+    //       this.setAttribute('scale', data.to);
+    //     });
+    //   }
+    // });
+  </script>
 </body>
 
 </html>

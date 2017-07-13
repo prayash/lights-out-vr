@@ -1,10 +1,10 @@
 {
-  "name": "aframe-hello-world-boilerplate",
-  "description": "Boilerplate with A-Frame's 'Hello, World!' of WebVR.",
-  "version": "0.3.0",
+  "name": "lights-out-vr",
+  "description": "A basic Lights Out game leveraging WebVR.",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "start": "budo --live --verbose --port 3000 --open",
+    "start": "budo --live --verbose --port 3000 --open -- -t babelify",
     "deploy": "ghpages",
     "ghpages": "ghpages"
   },
@@ -12,12 +12,8 @@
     "budo": "^7.0.0",
     "ghpages": "0.0.3"
   },
-  "keywords": [
-    "aframe",
-    "aframe-example",
-    "aframe-boilerplate",
-    "aframe-scene",
-    "webvr",
-    "vr"
-  ]
+  "keywords": ["aframe", "aframe-scene", "webvr", "vr"],
+  "dependencies": {
+    "aframe": "^0.6.0"
+  }
 }
