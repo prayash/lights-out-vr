@@ -3,15 +3,15 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Hello, World! - A-Frame</title>
-  <meta name="description" content="Hello, World! - A-Frame">
-  <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-  <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  <title>Lights Out VR!</title>
+  <meta name="description" content="Lights Out VR!">
+  <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
   <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
   <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
   <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
   <script src="https://npmcdn.com/aframe-template-component@3.1.1"></script>
   <script src="components/set-image.js"></script>
+  <script src="app.js"></script>
 </head>
 
 <body>
@@ -88,9 +88,11 @@
     </a-entity>
 
     <!-- Camera + cursor. -->
-    <a-entity camera look-controls>
-      <a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-        event-set__1="_event: mouseenter; color: springgreen" event-set__2="_event: mouseleave; color: black" fuse="true" raycaster="objects: .link"></a-cursor>
+    <a-entity id="camera-wrapper" position="3 -3 2">
+      <a-entity camera look-controls>
+        <a-cursor id="cursor" animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+          event-set__1="_event: mouseenter; color: black" event-set__2="_event: mouseleave; color: white" fuse="true" raycaster="objects: .link"></a-cursor>
+      </a-entity>
     </a-entity>
   </a-scene>
 </body>
