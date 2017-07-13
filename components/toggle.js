@@ -15,7 +15,7 @@ AFRAME.registerComponent('toggle', {
     var el = this.el
 
     el.addEventListener(data.on, function() {
-      this.computeNewState()
+      console.log('HELLO')
     })
   },
 
