@@ -26,6 +26,9 @@
       <img id="sechelt" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
       <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
 
+      <img id="bg" crossorigin="anonymous" src="assets/img/bg.jpg">
+      <img id="light-thumb" crossorigin="anonymous" src="assets/img/light.jpg">
+
       <audio id="click-sound" crossorigin="anonymous" src="assets/audio/click.ogg"></audio>
 
       <!-- Image link template to be reused. -->
@@ -37,15 +40,51 @@
     </a-assets>
 
     <!-- 360-degree image. -->
-    <a-sky id="image-360" radius="10" src="#city"></a-sky>
+    <a-sky id="image-360" radius="10" src="#bg"></a-sky>
 
     <!-- Image links. -->
     <a-entity id="links" layout="type: line; margin: 1.5" position="0 0 -4">
-      <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
-      <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+
+      <!--<a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
       <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
-      <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
-      <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>-->
+    </a-entity>
+
+    <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1.5 -4">
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+    </a-entity>
+
+    <a-entity id="links" layout="type: line; margin: 1.5" position="0 -3 -4">
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+    </a-entity>
+
+    <a-entity id="links" layout="type: line; margin: 1.5" position="0 -4.5 -4">
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+    </a-entity>
+
+    <a-entity id="links" layout="type: line; margin: 1.5" position="0 -6 -4">
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
+      <a-entity template="src: #link" data-src="#bg" data-thumb="#light-thumb"></a-entity>
     </a-entity>
 
     <!-- Camera + cursor. -->
