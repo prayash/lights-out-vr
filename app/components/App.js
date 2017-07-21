@@ -2,6 +2,7 @@ import 'aframe'
 import 'aframe-template-component'
 import 'aframe-animation-component'
 import 'aframe-particle-system-component'
+import 'aframe-event-set-component'
 import { h, Component } from 'preact'
 import { Entity, Scene } from 'aframe-react'
 import config from '../config'
@@ -75,6 +76,7 @@ export default class App extends Component {
         {matrix.map((row, rowIndex) =>
           row.map((col, colIndex) =>
             <Entity
+              className="light"
               primitive="a-plane"
               height="1"
               width="1"
@@ -142,7 +144,13 @@ export default class App extends Component {
 
         <Entity position={{ x: 2, y: 3, z: 8 }}>
           <Entity primitive="a-camera" wasd-controls-enabled={false}>
-            <Entity primitive="a-cursor" />
+            <Entity
+              primitive="a-cursor"
+              fuse="true"
+              event-set__1="_event: mouseenter; color: black"
+              event-set__2="_event: mouseleave; color: white"
+              raycaster="objects: .light"
+            />
           </Entity>
         </Entity>
       </Scene>
