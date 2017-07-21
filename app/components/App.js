@@ -71,6 +71,38 @@ export default class App extends Component {
         <Entity
           particle-system={{ preset: 'dust', particleCount: 200, opacity: 0.5 }}
         />
+
+        {matrix.map((row, rowIndex) =>
+          row.map((col, colIndex) =>
+            <Entity
+              primitive="a-plane"
+              height="1"
+              width="1"
+              src={`#${textures[Math.floor(Math.random() * textures.length)]}`}
+              material={{
+                color: col === 1 ? 'white' : 'gray',
+                opacity: 0.95
+              }}
+              position={{
+                x: colIndex * config.SCALE + config.X_OFFSET,
+                y: rowIndex * config.SCALE + config.Y_OFFSET,
+                z: 0
+              }}
+            >
+              {/* <Entity
+                primitive="a-light"
+                type="point"
+                intensity="0.5"
+                position={{
+                  x: 0,
+                  y: 0,
+                  z: 0
+                }}
+              /> */}
+            </Entity>
+          )
+        )}
+
         {/* <Entity
           text={{ value: 'Hello, A-Frame Preact!', align: 'center' }}
           position={{ x: 0, y: 2, z: -1 }}
@@ -107,48 +139,10 @@ export default class App extends Component {
             material={{ color: '#24CAFF' }}
           />
         </Entity> */}
-        {matrix.map((row, rowIndex) =>
-          row.map((col, colIndex) =>
-            <Entity
-              primitive="a-plane"
-              height="1"
-              width="1"
-              src={`#${textures[Math.floor(Math.random() * textures.length)]}`}
-              material={{
-                color: 'white',
-                opacity: 0.95
-              }}
-              position={{
-                x: colIndex * config.SCALE + config.X_OFFSET,
-                y: rowIndex * config.SCALE + config.Y_OFFSET,
-                z: 0
-              }}
-            >
-              {/* <Entity
-                primitive="a-light"
-                type="point"
-                intensity="0.5"
-                position={{
-                  x: 0,
-                  y: 0,
-                  z: 0
-                }}
-              /> */}
-            </Entity>
-          )
-        )}
+
         <Entity position={{ x: 2, y: 3, z: 8 }}>
           <Entity primitive="a-camera" wasd-controls-enabled={false}>
-            <Entity
-              primitive="a-cursor"
-              animation__click={{
-                property: 'scale',
-                startEvents: 'click',
-                from: '0.1 0.1 0.1',
-                to: '1 1 1',
-                dur: 150
-              }}
-            />
+            <Entity primitive="a-cursor" />
           </Entity>
         </Entity>
       </Scene>
