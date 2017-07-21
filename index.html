@@ -1,110 +1,17 @@
 <!DOCTYPE html>
-<html>
 
 <head>
   <meta charset="utf-8">
-  <title>Lights Out VR!</title>
-  <meta name="description" content="Lights Out VR!">
-  <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
-  <script src="https://npmcdn.com/aframe-animation-component@3.0.1"></script>
-  <script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
-  <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
-  <script src="https://unpkg.com/aframe-template-component@^3.2.1/dist/aframe-template-component.min.js"></script>
-  <script src="components/set-image.js"></script>
-  <script src="components/toggle.js"></script>
+  <meta name="viewport" content="width=device-width">
+  <title>Prights out</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="vendor.js"></script>
+  <script src="app.js"></script>
+  <script>
+    require('initialize');
+  </script>
 </head>
 
 <body>
-  <a-scene>
-    <a-assets>
-
-      <img id="bg" crossorigin="anonymous" src="assets/img/bg.jpg">
-      <img id="light-thumb" crossorigin="anonymous" src="assets/img/light.jpg">
-
-      <audio id="click-sound" crossorigin="anonymous" src="assets/audio/click.ogg"></audio>
-
-      <!-- Image link template to be reused. -->
-      <script id="link" type="text/html">
-        <a-entity class="link" geometry="primitive: plane; height: 1; width: 1" material="shader: flat; src: ${thumb}" event-set__1="_event: mouseenter; scale: 1.2 1.2 1"
-          event-set__2="_event: mouseleave; scale: 1 1 1" set-image="on: click; target: #image-360; src: ${src}" sound="on: click; src: #click-sound"
-          toggle="on: click"></a-entity>
-      </script>
-    </a-assets>
-
-    <!-- 360-degree image. -->
-    <a-sky id="image-360" radius="15" src="#bg"></a-sky>
-
-    <!-- Camera + cursor. -->
-    <a-entity id="camera-wrapper" position="3 -3 2">
-      <a-entity camera look-controls>
-        <a-cursor id="cursor" animation__click="property: rotation; startEvents: click; from: 0 0 0; to: 1 1 1; dur: 150" animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 150"
-          event-set__1="_event: mouseenter; color: black" event-set__2="_event: mouseleave; color: white" fuse="true" raycaster="objects: .link"></a-cursor>
-      </a-entity>
-    </a-entity>
-  </a-scene>
-
-  <script>
-    var scene = document.querySelector('a-scene')
-    var camera = document.querySelector('[camera]')
-
-    // ************************************************************************
-
-    // AFRAME.registerComponent('cb', {
-    //   init: function () {
-    //     console.info('Ready!')
-    //   }
-    // })
-
-    var matrix = [
-      [1, 1, 0, 1, 1],
-      [1, 0, 1, 0, 1],
-      [0, 1, 1, 1, 0],
-      [1, 0, 1, 0, 1],
-      [1, 1, 0, 1, 1]
-    ]
-
-    var yPos = 0
-
-    for (var j of matrix) {
-      var row = document.createElement('a-entity')
-      var rowPosition = '0 ' + yPos.toString() + ' -4'
-
-      row.setAttribute('id', 'links')
-      row.setAttribute('layout', 'type', 'line')
-      row.setAttribute('layout', 'margin', 1.5)
-      row.setAttribute('position', rowPosition)
-      row.flushToDOM(false)
-      scene.appendChild(row)
-      yPos -= 1.5
-
-      for (var i of j) {
-        var light = document.createElement('a-entity')
-
-        // light.setAttribute('cb', '')
-        light.dataset.src = '#bg'
-        light.dataset.thumb = '#light-thumb'
-        light.dataset.state = '1'
-        light.setAttribute('template', 'src', ' #link')
-        light.flushToDOM(false)
-        row.appendChild(light)
-      }
-    }
-
-    camera.setAttribute('wasd-controls', true)
-
-    // AFRAME.registerComponent('scale-on-mouseenter', {
-    //   schema: {
-    //     to: { default: '2.5 2.5 2.5' }
-    //   },
-
-    //   init: function () {
-    //     var data = this.data;
-    //     this.el.addEventListener('mouseenter', function () {
-    //       this.setAttribute('scale', data.to);
-    //     });
-    //   }
-    // });
-  </script>
+  <div id="app" style="height: 100%; width: 100%"></div>
 </body>
-
-</html>
