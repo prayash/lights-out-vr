@@ -165,6 +165,8 @@ require('aframe-animation-component');
 
 require('aframe-particle-system-component');
 
+require('aframe-event-set-component');
+
 var _preact = require('preact');
 
 var _aframeReact = require('aframe-react');
@@ -243,6 +245,7 @@ var App = function (_Component) {
         matrix.map(function (row, rowIndex) {
           return row.map(function (col, colIndex) {
             return (0, _preact.h)(_aframeReact.Entity, {
+              className: 'light',
               primitive: 'a-plane',
               height: '1',
               width: '1',
@@ -265,7 +268,13 @@ var App = function (_Component) {
           (0, _preact.h)(
             _aframeReact.Entity,
             { primitive: 'a-camera', 'wasd-controls-enabled': false },
-            (0, _preact.h)(_aframeReact.Entity, { primitive: 'a-cursor' })
+            (0, _preact.h)(_aframeReact.Entity, {
+              primitive: 'a-cursor',
+              fuse: 'true',
+              'event-set__1': '_event: mouseenter; color: black',
+              'event-set__2': '_event: mouseleave; color: white',
+              raycaster: 'objects: .light'
+            })
           )
         )
       );
