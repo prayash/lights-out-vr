@@ -248,7 +248,7 @@ var App = function (_Component) {
               width: '1',
               src: '#' + textures[Math.floor(Math.random() * textures.length)],
               material: {
-                color: 'white',
+                color: col === 1 ? 'white' : 'gray',
                 opacity: 0.95
               },
               position: {
@@ -265,16 +265,7 @@ var App = function (_Component) {
           (0, _preact.h)(
             _aframeReact.Entity,
             { primitive: 'a-camera', 'wasd-controls-enabled': false },
-            (0, _preact.h)(_aframeReact.Entity, {
-              primitive: 'a-cursor',
-              animation__click: {
-                property: 'scale',
-                startEvents: 'click',
-                from: '0.1 0.1 0.1',
-                to: '1 1 1',
-                dur: 150
-              }
-            })
+            (0, _preact.h)(_aframeReact.Entity, { primitive: 'a-cursor' })
           )
         )
       );
