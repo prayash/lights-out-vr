@@ -1,10 +1,16 @@
 import { h, Component } from 'preact'
 import { Entity, Scene } from 'aframe-react'
+import tinytime from 'tinytime'
 
-const Timer = () => {
+const template = tinytime('{mm}:{ss}')
+
+const Timer = ({ time }) => {
+  const date = new Date()
+  date.setHours(0, 2, 36)
+
   return (
     <Entity
-      text={{ value: '00:00', width: 24 }}
+      text={{ value: template.render(date), width: 24 }}
       position={{ x: 22, y: 0.5, z: -4 }}
     />
   )

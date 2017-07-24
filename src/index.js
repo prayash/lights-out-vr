@@ -3,14 +3,14 @@
 import { h, render } from 'preact'
 import './style'
 
-import Main from './components/Main'
+import Game from './components/Game'
 import Repo from './repo'
 
 const repo = new Repo()
 
 let root
 function init() {
-  root = render(<Main repo={repo} />, document.body, root)
+  root = render(<Game repo={repo} />, document.body, root)
 }
 
 // register ServiceWorker via OfflinePlugin, for prod only:

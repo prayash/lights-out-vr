@@ -4,18 +4,19 @@ import 'aframe-animation-component'
 import 'aframe-particle-system-component'
 import 'aframe-event-set-component'
 import { h, Component } from 'preact'
-import { Entity, Scene } from 'aframe-react'
+import { Entity } from 'aframe-react'
 import { Presenter } from 'microcosm-preact'
 import { flick } from '../actions/game'
 import config from '../config.js'
 
 import Assets from './Assets'
+import MainScene from './MainScene'
 import Moves from './Moves'
 import Particles from './Particles'
 import Sky from './Sky'
 import Timer from './Timer'
 
-export default class Main extends Presenter {
+export default class Game extends Presenter {
   constructor(props) {
     super(props)
   }
@@ -24,7 +25,8 @@ export default class Main extends Presenter {
     return {
       lights: state => state.game.lights,
       moves: state => state.game.moves,
-      textures: state => state.game.textures
+      textures: state => state.game.textures,
+      timeElapsed: state => state.game.timeElapsed
     }
   }
 
@@ -41,11 +43,10 @@ export default class Main extends Presenter {
   }
 
   render(props, state, model) {
-    console.log(model.moves)
-    const { lights, moves, textures } = model
+    const { lights, moves, textures, timeElapsed } = model
 
     return (
-      <Scene>
+      <MainScene>
         <Assets />
 
         <Sky
@@ -88,14 +89,12 @@ export default class Main extends Presenter {
               events={{
                 click: this.handleClick
               }}
-              animation__scale="property: scale; dir: alternate; dur: 5000;
-                easing: easeInSine; loop: true; to: 1.1 1.1 1.1"
             />
           )
         )}
 
         <Moves val={moves.toString()} />
-        <Timer />
+        <Timer time={new Date().now} />
 
         <Entity position={{ x: 2, y: 3, z: 8 }}>
           <Entity primitive="a-camera" wasd-controls-enabled={false}>
@@ -108,7 +107,7 @@ export default class Main extends Presenter {
             />
           </Entity>
         </Entity>
-      </Scene>
+      </MainScene>
     )
   }
 }

@@ -1,4 +1,4 @@
-import { flick } from '../actions/game'
+import { flick, tickTimer } from '../actions/game'
 import {
   createRandomMatrix,
   createTextureMatrix,
@@ -19,6 +19,13 @@ const Game = {
     }
   },
 
+  register() {
+    return {
+      [flick]: this.compute,
+      [tickTimer]: this.tick
+    }
+  },
+
   compute(state, payload) {
     const { x, y } = payload
     const computedMatrix = computeNewMatrix(state.lights, { y, x })
@@ -34,11 +41,7 @@ const Game = {
     }
   },
 
-  register() {
-    return {
-      [flick]: this.compute
-    }
-  }
+  tick(state, payload) {}
 }
 
 export default Game
