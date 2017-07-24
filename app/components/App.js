@@ -14,8 +14,6 @@ export default class App extends Presenter {
   constructor(props) {
     super(props)
     this.state = { color: 'white' }
-
-    this.handleClick = this.handleClick.bind(this)
   }
 
   model() {
@@ -26,16 +24,18 @@ export default class App extends Presenter {
 
   changeColor() {
     const colors = ['red', 'orange', 'yellow', 'green', 'blue']
+
     this.setState({
       color: colors[Math.floor(Math.random() * colors.length)]
     })
   }
 
-  handleClick(e) {
+  handleClick = e => {
     const payload = {
       x: parseInt(e.target.attributes[0].value),
       y: parseInt(e.target.attributes[1].value)
     }
+
     this.repo.push(flick, payload)
   }
 
@@ -96,43 +96,6 @@ export default class App extends Presenter {
             />
           )
         )}
-
-        {/* <Entity
-          text={{ value: 'Hello, A-Frame Preact!', align: 'center' }}
-          position={{ x: 0, y: 2, z: -1 }}
-        /> */}
-        {/* <Entity
-          id="box"
-          geometry={{ primitive: 'box' }}
-          material={{ color: this.state.color, opacity: 0.6 }}
-          animation__rotate={{
-            property: 'rotation',
-            dur: 2000,
-            loop: true,
-            to: '360 360 360'
-          }}
-          animation__scale={{
-            property: 'scale',
-            dir: 'alternate',
-            dur: 100,
-            loop: true,
-            to: '1.1 1.1 1.1'
-          }}
-          position={{ x: 0, y: 1, z: -3 }}
-          events={{ click: this.changeColor.bind(this) }}
-        >
-          <Entity
-            animation__scale={{
-              property: 'scale',
-              dir: 'alternate',
-              dur: 100,
-              loop: true,
-              to: '2 2 2'
-            }}
-            geometry={{ primitive: 'box', depth: 0.2, height: 0.2, width: 0.2 }}
-            material={{ color: '#24CAFF' }}
-          />
-        </Entity> */}
 
         <Entity position={{ x: 2, y: 3, z: 8 }}>
           <Entity primitive="a-camera" wasd-controls-enabled={false}>
