@@ -1,6 +1,7 @@
 import { flick } from '../actions/game'
 import {
   createRandomMatrix,
+  createTextureMatrix,
   verifyCompletion,
   computeNewMatrix
 } from '../helpers'
@@ -9,6 +10,7 @@ const Game = {
   getInitialState() {
     return {
       hasWon: false,
+      textures: createTextureMatrix(5),
       lights: createRandomMatrix(5, 'EASY'),
       mode: 'EASY',
       moves: 0,

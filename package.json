@@ -86,7 +86,7 @@
     "aframe-react": "^4.3.0",
     "aframe-template-component": "^3.2.1",
     "microcosm": "12.9.0-beta4",
-    "microcosm-preact": "1.0.0-alpha",
+    "microcosm-preact": "1.0.0",
     "preact": "^8.1.0",
     "preact-compat": "^3.15.0",
     "preact-render-to-string": "^3.6.0",

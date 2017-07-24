@@ -1,3 +1,25 @@
+import config from './config'
+
+export const createTextureMatrix = (size = 5) => {
+  let mat = []
+
+  while (mat.length < size) {
+    const row = []
+
+    while (row.length < size) {
+      row.push(
+        config.TEXTURES[Math.floor(Math.random() * config.TEXTURES.length)]
+      )
+    }
+
+    mat.push(row)
+  }
+
+  console.log(mat)
+
+  return mat
+}
+
 /**
  * createRandomMatrix: Creates a random matrix of 0s or 1s
  * @param {Int} size - The size of the matrix, 5 by default
