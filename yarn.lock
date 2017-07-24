@@ -31,6 +31,10 @@ aframe-bmfont-text-component@^0.1.4:
     object-assign "^4.1.0"
     three-bmfont-text "^2.1.0"
 
+aframe-effects@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/aframe-effects/-/aframe-effects-0.5.0.tgz#9e65c41dfd57874c9baf48a0afff7517228462a8"
+
 aframe-event-set-component@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/aframe-event-set-component/-/aframe-event-set-component-3.0.3.tgz#0b5556fefde3af81b55592e5f3c77e67fe2b76e2"
@@ -3256,9 +3260,9 @@ micro-promisify@^0.1.1, micro-promisify@~0.1, micro-promisify@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/micro-promisify/-/micro-promisify-0.1.1.tgz#071da590b4956560dedf4aae7044729c1a28902d"
 
-microcosm-preact@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/microcosm-preact/-/microcosm-preact-0.4.0.tgz#7f450ae651c8197eaf3b69bd487400813aabdcc3"
+microcosm-preact@1.0.0-alpha:
+  version "1.0.0-alpha"
+  resolved "https://registry.yarnpkg.com/microcosm-preact/-/microcosm-preact-1.0.0-alpha.tgz#31ddfb79d111be0adb321516c78e01e01b595be5"
   dependencies:
     form-serialize "^0.7.1"
 

@@ -15,12 +15,13 @@
     "aframe": "^0.6.0",
     "aframe-animation-component": "^3.2.5",
     "aframe-bmfont-text-component": "^0.1.4",
+    "aframe-effects": "^0.5.0",
     "aframe-event-set-component": "^3.0.3",
     "aframe-particle-system-component": "^1.0.10",
     "aframe-react": "^4.3.0",
     "aframe-template-component": "^3.2.1",
     "microcosm": "^12.8.0",
-    "microcosm-preact": "^0.4.0",
+    "microcosm-preact": "1.0.0-alpha",
     "preact": "^8.1.0"
   },
   "devDependencies": {

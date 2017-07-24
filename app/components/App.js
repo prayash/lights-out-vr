@@ -5,8 +5,7 @@ import 'aframe-particle-system-component'
 import 'aframe-event-set-component'
 import { h, Component } from 'preact'
 import { Entity, Scene } from 'aframe-react'
-import { withIntent } from 'microcosm-preact'
-import Presenter from 'microcosm-preact/presenter'
+import { Presenter } from 'microcosm-preact'
 import { flick } from '../actions/game'
 import config from '../config.js'
 
@@ -16,7 +15,7 @@ export default class App extends Presenter {
     this.state = { color: 'white' }
   }
 
-  model() {
+  getModel() {
     return {
       game: state => state.game
     }
@@ -31,6 +30,9 @@ export default class App extends Presenter {
   }
 
   handleClick = e => {
+    // e.target.sceneEl.object3D.rotation.set(50, 90, 180)
+    // console.log(e.target.sceneEl.object3D.rotation)
+
     const payload = {
       x: parseInt(e.target.attributes[0].value),
       y: parseInt(e.target.attributes[1].value)
@@ -39,12 +41,13 @@ export default class App extends Presenter {
     this.repo.push(flick, payload)
   }
 
-  view(model) {
-    const { game } = model
-    const { lights } = game
+  render() {
+    console.log(this.model)
+    // const { game } = model
+    // const { lights } = game
 
     return (
-      <Scene>
+      <Scene stats>
         <a-assets>
           <img crossOrigin id="x" src="img/x.png" />
           <img crossOrigin id="step" src="img/step.png" />
@@ -71,28 +74,31 @@ export default class App extends Presenter {
           particle-system={{ preset: 'dust', particleCount: 200, opacity: 0.5 }}
         />
 
-        {lights.map((row, rowIndex) =>
-          row.map((col, colIndex) =>
+        {lights.map((row, y) =>
+          row.map((col, x) =>
             <Entity
-              x={colIndex}
-              y={rowIndex}
+              x={x}
+              y={y}
               className="light"
               primitive="a-plane"
               height="1"
               width="1"
-              src={`#${config.TEXTURES[(rowIndex + colIndex) % 11]}`}
+              src={`#${config.TEXTURES[(y + x) % 11]}`}
               material={{
                 color: col === 1 ? 'white' : '#111111',
                 opacity: 0.95
               }}
               position={{
-                x: colIndex * config.SCALE + config.X_OFFSET,
-                y: rowIndex * config.SCALE + config.Y_OFFSET,
+                x: x * config.SCALE + config.X_OFFSET,
+                y: y * config.SCALE + config.Y_OFFSET,
                 z: 0
               }}
+              rotation={{ x: 0, y: 0, z: 0 }}
               events={{
                 click: this.handleClick
               }}
+              animation__scale="property: scale; dir: alternate; dur: 200;
+                easing: easeInSine; loop: true; to: 1.2 1 1.2"
             />
           )
         )}
