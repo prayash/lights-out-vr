@@ -5,37 +5,24 @@ import 'aframe-particle-system-component'
 import 'aframe-event-set-component'
 import { h, Component } from 'preact'
 import { Entity, Scene } from 'aframe-react'
-import config from '../config'
+import { withIntent } from 'microcosm-preact'
+import Presenter from 'microcosm-preact/presenter'
+import { flick } from '../actions/game'
+import config from '../config.js'
 
-const matrix = [
-  [1, 1, 0, 1, 1],
-  [1, 0, 1, 0, 1],
-  [0, 1, 1, 1, 0],
-  [1, 0, 1, 0, 1],
-  [1, 1, 0, 1, 1]
-]
-
-const textures = [
-  'x',
-  'step',
-  'circle',
-  'fcircle',
-  'rect',
-  'frect',
-  'dstrips',
-  'hstrips',
-  'vstrips',
-  'dots',
-  'waves'
-]
-
-export default class App extends Component {
+export default class App extends Presenter {
   constructor(props) {
     super(props)
     this.state = { color: 'white' }
+
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  componentDidMount() {}
+  model() {
+    return {
+      game: state => state.game
+    }
+  }
 
   changeColor() {
     const colors = ['red', 'orange', 'yellow', 'green', 'blue']
@@ -44,7 +31,18 @@ export default class App extends Component {
     })
   }
 
-  render() {
+  handleClick(e) {
+    const payload = {
+      x: parseInt(e.target.attributes[0].value),
+      y: parseInt(e.target.attributes[1].value)
+    }
+    this.repo.push(flick, payload)
+  }
+
+  view(model) {
+    const { game } = model
+    const { lights } = game
+
     return (
       <Scene>
         <a-assets>
@@ -73,16 +71,18 @@ export default class App extends Component {
           particle-system={{ preset: 'dust', particleCount: 200, opacity: 0.5 }}
         />
 
-        {matrix.map((row, rowIndex) =>
+        {lights.map((row, rowIndex) =>
           row.map((col, colIndex) =>
             <Entity
+              x={colIndex}
+              y={rowIndex}
               className="light"
               primitive="a-plane"
               height="1"
               width="1"
-              src={`#${textures[Math.floor(Math.random() * textures.length)]}`}
+              src={`#${config.TEXTURES[(rowIndex + colIndex) % 11]}`}
               material={{
-                color: col === 1 ? 'white' : 'gray',
+                color: col === 1 ? 'white' : '#111111',
                 opacity: 0.95
               }}
               position={{
@@ -90,18 +90,10 @@ export default class App extends Component {
                 y: rowIndex * config.SCALE + config.Y_OFFSET,
                 z: 0
               }}
-            >
-              {/* <Entity
-                primitive="a-light"
-                type="point"
-                intensity="0.5"
-                position={{
-                  x: 0,
-                  y: 0,
-                  z: 0
-                }}
-              /> */}
-            </Entity>
+              events={{
+                click: this.handleClick
+              }}
+            />
           )
         )}
 

@@ -19,6 +19,8 @@
     "aframe-particle-system-component": "^1.0.10",
     "aframe-react": "^4.3.0",
     "aframe-template-component": "^3.2.1",
+    "microcosm": "^12.8.0",
+    "microcosm-preact": "^0.4.0",
     "preact": "^8.1.0"
   },
   "devDependencies": {
@@ -26,6 +28,7 @@
     "babel-brunch": "~6.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-latest": "^6",
+    "babel-preset-stage-2": "^6.24.1",
     "brunch": "^2",
     "clean-css-brunch": "^2",
     "ghpages": "0.0.3",

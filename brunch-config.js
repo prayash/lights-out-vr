@@ -17,7 +17,7 @@ exports.npm = {
 
 exports.plugins = {
   babel: {
-    presets: ['latest'],
+    presets: ['latest', 'stage-2'],
     plugins: [['transform-react-jsx', { pragma: 'h' }]]
   }
 }
