@@ -10,8 +10,9 @@ import { flick } from '../actions/game'
 import config from '../config.js'
 
 import Assets from './Assets'
-import Atmosphere from './Atmosphere'
 import Moves from './Moves'
+import Particles from './Particles'
+import Sky from './Sky'
 import Timer from './Timer'
 
 export default class Main extends Presenter {
@@ -46,6 +47,23 @@ export default class Main extends Presenter {
     return (
       <Scene>
         <Assets />
+
+        <Sky
+          topColor="17 17 25"
+          bottomColor="24 17 17"
+          exponent="1.2"
+          offset="300"
+        />
+
+        <Particles />
+
+        <Entity primitive="a-light" type="ambient" color="#445451" />
+        <Entity
+          primitive="a-light"
+          type="point"
+          intensity="2"
+          position="2 4 4"
+        />
 
         {lights.map((row, y) =>
           row.map((col, x) =>
