@@ -20,7 +20,7 @@
     "aframe-particle-system-component": "^1.0.10",
     "aframe-react": "^4.3.0",
     "aframe-template-component": "^3.2.1",
-    "microcosm": "^12.8.0",
+    "microcosm": "12.9.0-beta4",
     "microcosm-preact": "1.0.0-alpha",
     "preact": "^8.1.0"
   },

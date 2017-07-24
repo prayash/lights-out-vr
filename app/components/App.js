@@ -42,7 +42,7 @@ export default class App extends Presenter {
   }
 
   render() {
-    console.log(this.model)
+    // console.log(this.model)
     // const { game } = model
     // const { lights } = game
 
