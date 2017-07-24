@@ -1,8 +1,8 @@
 import { h, Component } from 'preact'
 import { Entity, Scene } from 'aframe-react'
 
-import vertexShader from 'raw-loader!../shaders/skybient.vs'
-import fragmentShader from 'raw-loader!../shaders/skybient.fs'
+import vertexShader from 'raw-loader!../shaders/skybient.vert'
+import fragmentShader from 'raw-loader!../shaders/skybient.frag'
 
 AFRAME.registerShader('skybient', {
   schema: {
