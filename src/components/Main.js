@@ -9,15 +9,26 @@ import { Presenter } from 'microcosm-preact'
 import { flick } from '../actions/game'
 import config from '../config.js'
 
-export default class App extends Presenter {
+import x from '../assets/img/x.png'
+import step from '../assets/img/circle.png'
+import circle from '../assets/img/circle.png'
+import fcircle from '../assets/img/fcircle.png'
+import rect from '../assets/img/rect.png'
+import frect from '../assets/img/frect.png'
+import dstrips from '../assets/img/dstrips.png'
+import hstrips from '../assets/img/hstrips.png'
+import vstrips from '../assets/img/vstrips.png'
+import dots from '../assets/img/dots.png'
+import waves from '../assets/img/waves.png'
+
+export default class Main extends Presenter {
   constructor(props) {
     super(props)
-    this.state = { color: 'white' }
   }
 
   getModel() {
     return {
-      game: state => state.game
+      lights: state => state.game.lights
     }
   }
 
@@ -42,24 +53,22 @@ export default class App extends Presenter {
   }
 
   render() {
-    // console.log(this.model)
-    // const { game } = model
-    // const { lights } = game
+    const { lights } = this.model
 
     return (
-      <Scene stats>
+      <Scene>
         <a-assets>
-          <img crossOrigin id="x" src="img/x.png" />
-          <img crossOrigin id="step" src="img/step.png" />
-          <img crossOrigin id="circle" src="img/circle.png" />
-          <img crossOrigin id="fcircle" src="img/fcircle.png" />
-          <img crossOrigin id="rect" src="img/rect.png" />
-          <img crossOrigin id="frect" src="img/frect.png" />
-          <img crossOrigin id="dstrips" src="img/dstrips.png" />
-          <img crossOrigin id="hstrips" src="img/hstrips.png" />
-          <img crossOrigin id="vstrips" src="img/vstrips.png" />
-          <img crossOrigin id="dots" src="img/dots.png" />
-          <img crossOrigin id="waves" src="img/waves.png" />
+          <img crossOrigin id="x" src={x} />
+          <img crossOrigin id="step" src={step} />
+          <img crossOrigin id="circle" src={circle} />
+          <img crossOrigin id="fcircle" src={fcircle} />
+          <img crossOrigin id="rect" src={rect} />
+          <img crossOrigin id="frect" src={frect} />
+          <img crossOrigin id="dstrips" src={dstrips} />
+          <img crossOrigin id="hstrips" src={hstrips} />
+          <img crossOrigin id="vstrips" src={vstrips} />
+          <img crossOrigin id="dots" src={dots} />
+          <img crossOrigin id="waves" src={waves} />
         </a-assets>
 
         <Entity primitive="a-light" type="ambient" color="#445451" />
@@ -97,8 +106,8 @@ export default class App extends Presenter {
               events={{
                 click: this.handleClick
               }}
-              animation__scale="property: scale; dir: alternate; dur: 200;
-                easing: easeInSine; loop: true; to: 1.2 1 1.2"
+              animation__scale="property: scale; dir: alternate; dur: 5000;
+                easing: easeInSine; loop: true; to: 1.1 1.1 1.1"
             />
           )
         )}
