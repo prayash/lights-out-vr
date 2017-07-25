@@ -1,5 +1,5 @@
-import { h, Component } from 'preact'
-import { Entity, Scene } from 'aframe-react'
+import { h } from 'preact'
+import { Entity } from 'aframe-react'
 import tinytime from 'tinytime'
 
 const template = tinytime('{mm}:{ss}')

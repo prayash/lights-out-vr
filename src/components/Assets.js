@@ -1,5 +1,4 @@
-import { h, Component } from 'preact'
-import { Entity, Scene } from 'aframe-react'
+import { h } from 'preact'
 
 import x from '../assets/img/x.png'
 import step from '../assets/img/step.png'
