@@ -4,7 +4,7 @@ import { Entity } from 'aframe-react'
 const Particles = () => {
   return (
     <Entity
-      particle-system={{ preset: 'dust', particleCount: 200, opacity: 0.5 }}
+      particle-system={{ preset: 'dust', particleCount: 100, opacity: 0.5 }}
     />
   )
 }

@@ -9,12 +9,24 @@ import '../lib/DotScreenPass'
 import '../lib/BloomBlendPass'
 
 import '../lib/CopyShader'
+import '../lib/StaticShader'
 import '../lib/ConvolutionShader'
 import '../lib/DotScreenShader'
 import '../lib/HorizontalBlurShader'
 import '../lib/VerticalBlurShader'
 
 const { RenderPass, ShaderPass, EffectComposer } = THREE
+
+let bloomPass = new THREE.BloomBlendPass(
+  0.75, // the amount of blur
+  0.75, // interpolation(0.0 ~ 1.0) original image and bloomed image
+  new THREE.Vector2(2048, 2048) // image resolution
+)
+
+let staticPass = new ShaderPass(THREE.StaticShader)
+staticPass.uniforms['amount'].value = 0.04
+staticPass.uniforms['size'].value = 2.0
+staticPass.uniforms['time'].value = Math.random() * 2
 
 /**
  * Configures a THREE.EffectComposer on the current A-Frame scene.
@@ -37,14 +49,9 @@ AFRAME.registerSystem('effects', {
 
     const composer = new EffectComposer(renderer)
     composer.addPass(new RenderPass(scene, camera))
-
-    let bloomPass = new THREE.BloomBlendPass(
-      0.5, // the amount of blur
-      0.75, // interpolation(0.0 ~ 1.0) original image and bloomed image
-      new THREE.Vector2(2048, 2048) // image resolution
-    )
-    bloomPass.renderToScreen = true
     composer.addPass(bloomPass)
+    composer.addPass(staticPass)
+    staticPass.renderToScreen = true
 
     this.composer = composer
     this.t = 0
@@ -61,6 +68,8 @@ AFRAME.registerSystem('effects', {
   tick: function(t, dt) {
     this.t = t
     this.dt = dt
+
+    staticPass.uniforms['time'].value += 0.1
   },
 
   /**

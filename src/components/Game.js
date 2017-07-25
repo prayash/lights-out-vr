@@ -67,7 +67,6 @@ export default class Game extends Presenter {
 
         <Particles />
 
-        <Entity primitive="a-light" type="ambient" color="#445451" />
         <Entity
           primitive="a-light"
           type="point"
