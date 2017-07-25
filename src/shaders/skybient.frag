@@ -16,7 +16,7 @@ void main() {
     b = topColor.z / 255.0;
     vec3 tColor = vec3(r, g, b);
 
-    float h = normalize(vWorldPosition + offset).y;
+    float h = normalize(vWorldPosition + offset).z;
 
-    gl_FragColor = vec4( mix( bColor, tColor, max( pow( max( h, 0.0 ), exponent ), 0.0 ) ), 1.0 );
+    gl_FragColor = vec4( mix( bColor, tColor, max( pow( max( -h, 0.0 ), exponent ), 0.0 ) ), 1.0 );
 }

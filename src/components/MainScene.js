@@ -6,12 +6,13 @@ import '../lib/EffectComposer'
 import '../lib/RenderPass'
 import '../lib/ShaderPass'
 import '../lib/DotScreenPass'
-import '../lib/BloomPass'
 import '../lib/BloomBlendPass'
 
 import '../lib/CopyShader'
 import '../lib/ConvolutionShader'
 import '../lib/DotScreenShader'
+import '../lib/HorizontalBlurShader'
+import '../lib/VerticalBlurShader'
 
 const { RenderPass, ShaderPass, EffectComposer } = THREE
 
@@ -86,7 +87,7 @@ AFRAME.registerSystem('effects', {
 
 const MainScene = ({ children }) => {
   return (
-    <Scene effects>
+    <Scene effects antialias="false">
       {children}
     </Scene>
   )

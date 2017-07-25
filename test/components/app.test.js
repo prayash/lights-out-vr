@@ -2,7 +2,7 @@ import { h, render } from 'preact'
 import { route } from 'preact-router'
 import { expect } from 'chai'
 
-import App from '../../src/components/Main'
+import App from '../../src/components/Game'
 
 describe('App', () => {
   let scratch
