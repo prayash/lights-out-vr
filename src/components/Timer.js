@@ -6,7 +6,9 @@ const template = tinytime('{mm}:{ss}')
 
 const Timer = ({ time }) => {
   const date = new Date()
-  date.setHours(0, 2, 36)
+  const seconds = time % 60
+  const minutes = Math.floor(time / 60)
+  date.setHours(0, minutes, seconds)
 
   return (
     <Entity

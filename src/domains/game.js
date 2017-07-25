@@ -15,7 +15,8 @@ const Game = {
       mode: 'EASY',
       moves: 0,
       showInfo: false,
-      showSettings: false
+      showSettings: false,
+      timeElapsed: 0
     }
   },
 
@@ -27,7 +28,7 @@ const Game = {
   },
 
   compute(state, payload) {
-    const { x, y } = payload
+    const { y, x } = payload
     const computedMatrix = computeNewMatrix(state.lights, { y, x })
 
     // computedMatrix.map(x => console.info('row:', x.toString()))
@@ -41,7 +42,12 @@ const Game = {
     }
   },
 
-  tick(state, payload) {}
+  tick(state) {
+    return {
+      ...state,
+      timeElapsed: state.timeElapsed + 1
+    }
+  }
 }
 
 export default Game

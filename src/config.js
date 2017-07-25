@@ -1,4 +1,4 @@
-export default {
+const config = {
   X_OFFSET: -1,
   Y_OFFSET: 2,
   SCALE: 1.5,
@@ -16,3 +16,5 @@ export default {
     'waves'
   ]
 }
+
+export default config

@@ -1,4 +1,4 @@
-import { startTimer, pauseTimer, tickTimer } from '../actions/game'
+import { startTimer, stopTimer, tickTimer } from '../actions/game'
 
 class TimerEffect {
   setup() {
@@ -8,7 +8,7 @@ class TimerEffect {
   register() {
     return {
       [startTimer]: this.startTimer,
-      [pauseTimer]: this.pauseTimer
+      [stopTimer]: this.stopTimer
     }
   }
 
@@ -18,7 +18,7 @@ class TimerEffect {
     }, 1000)
   }
 
-  pauseTimer(repo) {
+  stopTimer(repo) {
     clearInterval(this.interval)
   }
 }

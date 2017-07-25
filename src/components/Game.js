@@ -6,7 +6,7 @@ import 'aframe-event-set-component'
 import { h } from 'preact'
 import { Entity } from 'aframe-react'
 import { Presenter } from 'microcosm-preact'
-import { flick } from '../actions/game'
+import { flick, startTimer } from '../actions/game'
 import config from '../config.js'
 
 import Assets from './Assets'
@@ -23,6 +23,7 @@ export default class Game extends Presenter {
 
   getModel() {
     return {
+      hasWon: state => state.game.hasWon,
       lights: state => state.game.lights,
       moves: state => state.game.moves,
       textures: state => state.game.textures,
@@ -34,6 +35,10 @@ export default class Game extends Presenter {
     // e.target.sceneEl.object3D.rotation.set(50, 90, 180)
     // console.log(e.target.sceneEl.object3D.rotation)
 
+    if (this.model.moves === 0) {
+      this.repo.push(startTimer)
+    }
+
     const payload = {
       x: parseInt(e.target.attributes[0].value),
       y: parseInt(e.target.attributes[1].value)
@@ -43,7 +48,11 @@ export default class Game extends Presenter {
   }
 
   render(props, state, model) {
-    const { lights, moves, textures, timeElapsed } = model
+    const { hasWon, lights, moves, textures, timeElapsed } = model
+
+    if (hasWon) {
+      alert('Yay.')
+    }
 
     return (
       <MainScene>
@@ -94,7 +103,7 @@ export default class Game extends Presenter {
         )}
 
         <Moves val={moves.toString()} />
-        <Timer time={new Date().now} />
+        <Timer time={timeElapsed} />
 
         <Entity position={{ x: 2, y: 3, z: 8 }}>
           <Entity primitive="a-camera" wasd-controls-enabled={false}>

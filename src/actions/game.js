@@ -3,4 +3,4 @@ export const toggleSettings = () => {}
 export const reset = () => {}
 export const startTimer = () => {}
 export const tickTimer = () => {}
-export const pauseTimer = () => {}
+export const stopTimer = () => {}
