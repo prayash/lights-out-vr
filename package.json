@@ -14,30 +14,22 @@
     "prebuild": "mkdirp build && ncp src/assets build/assets",
     "test": "npm run -s lint && jest --coverage",
     "test:watch": "npm run -s test -- --watch",
-    "lint": "eslint src test"
+    "lint": "eslint src test",
+    "deploy": "./bin/deploy.sh"
   },
   "license": "MIT",
   "jest": {
-    "setupFiles": [
-      "./test/setup.js"
-    ],
+    "setupFiles": ["./test/setup.js"],
     "testURL": "http://localhost:8080",
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules"
-    ],
+    "moduleFileExtensions": ["js", "jsx"],
+    "moduleDirectories": ["node_modules"],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy",
       "^react$": "preact-compat",
       "^react-dom$": "preact-compat"
     },
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ]
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"]
   },
   "devDependencies": {
     "autoprefixer": "^7.0.1",
