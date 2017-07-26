@@ -18,9 +18,9 @@ import '../lib/VerticalBlurShader'
 const { RenderPass, ShaderPass, EffectComposer } = THREE
 
 let bloomPass = new THREE.BloomBlendPass(
-  0.75, // the amount of blur
+  1.0, // the amount of blur
   0.75, // interpolation(0.0 ~ 1.0) original image and bloomed image
-  new THREE.Vector2(2048, 2048) // image resolution
+  new THREE.Vector2(2048, 2048)
 )
 
 let staticPass = new ShaderPass(THREE.StaticShader)
