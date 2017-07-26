@@ -1,29 +1,26 @@
 import { h } from 'preact'
 import { Entity } from 'aframe-react'
-import { withSend } from 'microcosm-preact'
-import { ready } from '../actions/game'
 
-const Intro = ({ send }) => {
-  let onClick = () => send(ready)
-
+const Intro = ({ onClick }) => {
   return (
     <Entity
       class="clickable"
-      primitive="a-box"
-      material={{ color: 'white' }}
+      geometry={{ primitive: 'plane', width: 3, height: 2 }}
+      material={{ color: 'white', opacity: 0 }}
       position={{ x: 2, y: 2, z: -2 }}
+      text={{
+        value: 'START',
+        align: 'center',
+        anchor: 'align',
+        baseline: 'center',
+        width: 15,
+        letterSpacing: 5
+      }}
       events={{
         click: onClick
       }}
-    >
-      <Entity
-        class="clickable"
-        text={{
-          value: 'START'
-        }}
-      />
-    </Entity>
+    />
   )
 }
 
-export default withSend(Intro)
+export default Intro

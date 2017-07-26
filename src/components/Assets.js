@@ -1,5 +1,8 @@
 import { h } from 'preact'
 
+import logo from '../assets/img/logo.png'
+import settings from '../assets/img/settings.png'
+import winner from '../assets/img/winner.png'
 import x from '../assets/img/x.png'
 import step from '../assets/img/step.png'
 import circle from '../assets/img/circle.png'
@@ -15,6 +18,9 @@ import waves from '../assets/img/waves.png'
 const Assets = () => {
   return (
     <a-assets>
+      <img crossOrigin id="logo" src={logo} />
+      <img crossOrigin id="settings" src={settings} />
+      <img crossOrigin id="winner" src={winner} />
       <img crossOrigin id="x" src={x} />
       <img crossOrigin id="step" src={step} />
       <img crossOrigin id="circle" src={circle} />

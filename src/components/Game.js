@@ -1,10 +1,17 @@
 import { h } from 'preact'
 import { Entity } from 'aframe-react'
 import { Presenter } from 'microcosm-preact'
-import { flick, ready, startTimer } from '../actions/game'
+import {
+  flick,
+  ready,
+  startTimer,
+  stopTimer,
+  toggleSettings
+} from '../actions/game'
 import config from '../config.js'
 
 import Assets from './Assets'
+import Intro from './Intro'
 import MainScene from './MainScene'
 import Moves from './Moves'
 import Particles from './Particles'
@@ -49,11 +56,15 @@ export default class Game extends Presenter {
     this.repo.push(ready)
   }
 
+  showSettings = () => {
+    this.repo.push(toggleSettings)
+  }
+
   render(props, state, model) {
     const { hasWon, lights, moves, ready, textures, timeElapsed } = model
 
     if (hasWon) {
-      alert('Yay.')
+      this.repo.push(stopTimer)
     }
 
     return (
@@ -73,8 +84,27 @@ export default class Game extends Presenter {
           primitive="a-light"
           type="point"
           intensity="2"
-          position="2 4 4"
+          position="2 6 4"
         />
+
+        {ready
+          ? <Entity
+              class="clickable"
+              primitive="a-plane"
+              height="1"
+              width="1"
+              src="#settings"
+              material={{
+                color: 'white',
+                opacity: 0.95
+              }}
+              position={{
+                x: 11,
+                y: 10,
+                z: -4
+              }}
+            />
+          : <Entity />}
 
         {ready
           ? <Entity>
@@ -83,14 +113,14 @@ export default class Game extends Presenter {
                   <Entity
                     x={x}
                     y={y}
-                    class="clickable"
+                    class={hasWon ? '' : 'clickable'}
                     primitive="a-plane"
                     height="1"
                     width="1"
                     src={`#${textures[y][x]}`}
                     material={{
                       color: col === 1 ? 'white' : '#111111',
-                      opacity: 0.95
+                      opacity: 0.75
                     }}
                     position={{
                       x: x * config.SCALE + config.X_OFFSET,
@@ -101,6 +131,8 @@ export default class Game extends Presenter {
                     events={{
                       click: this.handleClick
                     }}
+                    event-set__1="_event: mouseenter; material.opacity: 0.99"
+                    event-set__2="_event: mouseleave; material.opacity: 0.75"
                   />
                 )
               )}
@@ -125,6 +157,61 @@ export default class Game extends Presenter {
                 click: this.startGame
               }}
             />}
+
+        {!ready
+          ? <Entity
+              primitive="a-plane"
+              height="2"
+              width="8"
+              src="#logo"
+              material={{
+                color: 'white',
+                opacity: 0.95
+              }}
+              position={{
+                x: 2,
+                y: 5,
+                z: 0
+              }}
+            />
+          : <Entity />}
+
+        {hasWon
+          ? <Entity class="clickable">
+              <Entity
+                primitive="a-plane"
+                height="2"
+                width="8"
+                src="#winner"
+                material={{
+                  color: 'white',
+                  opacity: 0.95
+                }}
+                position={{
+                  x: 2,
+                  y: 5,
+                  z: 1
+                }}
+              />
+              <Entity
+                class="clickable"
+                geometry={{ primitive: 'plane', width: 3, height: 2 }}
+                material={{ color: 'white', opacity: 0 }}
+                position={{ x: 2, y: 2, z: 1.5 }}
+                text={{
+                  value: 'NEW GAME',
+                  align: 'center',
+                  anchor: 'align',
+                  baseline: 'center',
+                  width: 15,
+                  letterSpacing: 5
+                }}
+                events={{
+                  click: this.startGame
+                }}
+              />
+            </Entity>
+          : <Entity />}
 
         <Entity position={{ x: 2, y: 3, z: 10 }}>
           <Entity primitive="a-camera" wasd-controls-enabled={false}>
