@@ -1,5 +1,8 @@
-// import 'promise-polyfill';
-// import 'isomorphic-fetch';
+import 'aframe'
+import 'aframe-template-component'
+import 'aframe-animation-component'
+import 'aframe-particle-system-component'
+import 'aframe-event-set-component'
 import { h, render } from 'preact'
 import './style'
 

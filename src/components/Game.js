@@ -1,12 +1,7 @@
-import 'aframe'
-import 'aframe-template-component'
-import 'aframe-animation-component'
-import 'aframe-particle-system-component'
-import 'aframe-event-set-component'
 import { h } from 'preact'
 import { Entity } from 'aframe-react'
 import { Presenter } from 'microcosm-preact'
-import { flick, startTimer } from '../actions/game'
+import { flick, ready, startTimer } from '../actions/game'
 import config from '../config.js'
 
 import Assets from './Assets'
@@ -17,14 +12,17 @@ import Sky from './Sky'
 import Timer from './Timer'
 
 export default class Game extends Presenter {
-  constructor(props) {
-    super(props)
+  componentDidMount() {
+    document.querySelector('a-assets').addEventListener('loaded', () => {
+      // this.repo.push(ready)
+    })
   }
 
   getModel() {
     return {
       hasWon: state => state.game.hasWon,
       lights: state => state.game.lights,
+      ready: state => state.game.ready,
       moves: state => state.game.moves,
       textures: state => state.game.textures,
       timeElapsed: state => state.game.timeElapsed
@@ -47,8 +45,12 @@ export default class Game extends Presenter {
     this.repo.push(flick, payload)
   }
 
+  startGame = () => {
+    this.repo.push(ready)
+  }
+
   render(props, state, model) {
-    const { hasWon, lights, moves, textures, timeElapsed } = model
+    const { hasWon, lights, moves, ready, textures, timeElapsed } = model
 
     if (hasWon) {
       alert('Yay.')
@@ -74,44 +76,67 @@ export default class Game extends Presenter {
           position="2 4 4"
         />
 
-        {lights.map((row, y) =>
-          row.map((col, x) =>
-            <Entity
-              x={x}
-              y={y}
-              className="light"
-              primitive="a-plane"
-              height="1"
-              width="1"
-              src={`#${textures[y][x]}`}
-              material={{
-                color: col === 1 ? 'white' : '#111111',
-                opacity: 0.95
-              }}
-              position={{
-                x: x * config.SCALE + config.X_OFFSET,
-                y: y * config.SCALE + config.Y_OFFSET,
-                z: 0
-              }}
-              rotation={{ x: 0, y: 0, z: 0 }}
-              events={{
-                click: this.handleClick
-              }}
-            />
-          )
-        )}
+        {ready
+          ? <Entity>
+              {lights.map((row, y) =>
+                row.map((col, x) =>
+                  <Entity
+                    x={x}
+                    y={y}
+                    class="clickable"
+                    primitive="a-plane"
+                    height="1"
+                    width="1"
+                    src={`#${textures[y][x]}`}
+                    material={{
+                      color: col === 1 ? 'white' : '#111111',
+                      opacity: 0.95
+                    }}
+                    position={{
+                      x: x * config.SCALE + config.X_OFFSET,
+                      y: y * config.SCALE + config.Y_OFFSET,
+                      z: 0
+                    }}
+                    rotation={{ x: 0, y: 0, z: 0 }}
+                    events={{
+                      click: this.handleClick
+                    }}
+                  />
+                )
+              )}
 
-        <Moves val={moves.toString()} />
-        <Timer time={timeElapsed} />
+              <Moves val={moves.toString()} />
+              <Timer time={timeElapsed} />
+            </Entity>
+          : <Entity>
+              <Entity
+                class="clickable"
+                primitive="a-box"
+                material={{ color: 'white' }}
+                position={{ x: 2, y: 2, z: -2 }}
+                events={{
+                  click: this.startGame
+                }}
+              />
+            </Entity>}
+        <Entity
+          class="clickable"
+          text={{
+            value: 'START',
+            width: 64,
+            anchor: 'center'
+          }}
+          position={{ x: 5, y: 2, z: -8 }}
+        />
 
-        <Entity position={{ x: 2, y: 3, z: 8 }}>
+        <Entity position={{ x: 2, y: 3, z: 10 }}>
           <Entity primitive="a-camera" wasd-controls-enabled={false}>
             <Entity
               primitive="a-cursor"
               fuse="true"
               event-set__1="_event: mouseenter; color: black"
               event-set__2="_event: mouseleave; color: white"
-              raycaster="objects: .light"
+              raycaster="objects: .clickable"
             />
           </Entity>
         </Entity>

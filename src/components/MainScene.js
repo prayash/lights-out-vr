@@ -69,7 +69,7 @@ AFRAME.registerSystem('effects', {
     this.t = t
     this.dt = dt
 
-    staticPass.uniforms['time'].value += 0.1
+    staticPass.uniforms['time'].value += 0.01
   },
 
   /**
@@ -96,7 +96,7 @@ AFRAME.registerSystem('effects', {
 
 const MainScene = ({ children }) => {
   return (
-    <Scene effects antialias="false">
+    <Scene stats effects antialias={false}>
       {children}
     </Scene>
   )

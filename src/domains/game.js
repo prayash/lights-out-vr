@@ -1,4 +1,4 @@
-import { flick, tickTimer } from '../actions/game'
+import { flick, ready, tickTimer } from '../actions/game'
 import {
   createRandomMatrix,
   createTextureMatrix,
@@ -14,6 +14,7 @@ const Game = {
       lights: createRandomMatrix(5, 'EASY'),
       mode: 'EASY',
       moves: 0,
+      ready: false,
       showInfo: false,
       showSettings: false,
       timeElapsed: 0
@@ -23,6 +24,7 @@ const Game = {
   register() {
     return {
       [flick]: this.compute,
+      [ready]: this.gameReady,
       [tickTimer]: this.tick
     }
   },
@@ -39,6 +41,13 @@ const Game = {
       hasWon: verifyCompletion(computedMatrix),
       lights: computedMatrix,
       moves: state.moves + 1
+    }
+  },
+
+  gameReady(state) {
+    return {
+      ...state,
+      ready: true
     }
   },
 
