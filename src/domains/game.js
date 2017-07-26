@@ -1,4 +1,4 @@
-import { flick, ready, tickTimer } from '../actions/game'
+import { flick, ready, reset, tickTimer } from '../actions/game'
 import {
   createRandomMatrix,
   createTextureMatrix,
@@ -25,6 +25,7 @@ const Game = {
     return {
       [flick]: this.compute,
       [ready]: this.gameReady,
+      [reset]: this.resetGame,
       [tickTimer]: this.tick
     }
   },
@@ -48,6 +49,17 @@ const Game = {
     return {
       ...state,
       ready: true
+    }
+  },
+
+  resetGame(state) {
+    return {
+      ...state,
+      moves: 0,
+      hasWon: false,
+      lights: createRandomMatrix(5, 'EASY'),
+      textures: createTextureMatrix(5),
+      timeElapsed: 0
     }
   },
 

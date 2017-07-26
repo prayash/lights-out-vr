@@ -4,6 +4,7 @@ import { Presenter } from 'microcosm-preact'
 import {
   flick,
   ready,
+  reset,
   startTimer,
   stopTimer,
   toggleSettings
@@ -56,12 +57,21 @@ export default class Game extends Presenter {
     this.repo.push(ready)
   }
 
+  resetGame = () => {
+    this.repo.push(reset)
+  }
+
   showSettings = () => {
     this.repo.push(toggleSettings)
   }
 
+  getRandomArbitrary = (min, max) => {
+    return Math.random() * (max - min) + min
+  }
+
   render(props, state, model) {
     const { hasWon, lights, moves, ready, textures, timeElapsed } = model
+    const randWidth = this.getRandomArbitrary(1, 3)
 
     if (hasWon) {
       this.repo.push(stopTimer)
@@ -179,23 +189,21 @@ export default class Game extends Presenter {
         {!ready
           ? <Entity>
               {lights.map((row, y) =>
-                row.map((col, x) =>
-                  <Entity
-                    primitive="a-plane"
-                    height={Math.floor(Math.random() * 3)}
-                    width={Math.floor(Math.random() * 3)}
-                    src={`#${textures[y][x]}`}
-                    material={{
-                      color: 'white',
-                      opacity: Math.random()
-                    }}
-                    position={{
-                      x: -5 + Math.floor(Math.random() * 15),
-                      y: -2.5 + Math.floor(Math.random() * 15),
-                      z: Math.floor(Math.random() * 4)
-                    }}
-                  />
-                )
+                <Entity
+                  primitive="a-plane"
+                  height={randWidth}
+                  width={randWidth}
+                  src={`#${textures[y][1]}`}
+                  material={{
+                    color: 'white',
+                    opacity: Math.random()
+                  }}
+                  position={{
+                    x: -5 + Math.floor(Math.random() * 15),
+                    y: -2.5 + Math.floor(Math.random() * 15),
+                    z: Math.floor(Math.random() * 4)
+                  }}
+                />
               )}
             </Entity>
           : <Entity />}
@@ -231,7 +239,7 @@ export default class Game extends Presenter {
                   letterSpacing: 5
                 }}
                 events={{
-                  click: this.startGame
+                  click: this.resetGame
                 }}
               />
             </Entity>
