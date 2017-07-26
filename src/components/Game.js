@@ -108,34 +108,36 @@ export default class Game extends Presenter {
               <Moves val={moves.toString()} />
               <Timer time={timeElapsed} />
             </Entity>
-          : <Entity>
-              <Entity
-                class="clickable"
-                geometry={{}}
-                material={{ color: 'white' }}
-                position={{ x: 2, y: 2, z: -2 }}
-                events={{
-                  click: this.startGame
-                }}
-              />
-            </Entity>}
-        <Entity
-          class="clickable"
-          text={{
-            value: 'START',
-            width: 64,
-            anchor: 'center'
-          }}
-          position={{ x: 5, y: 2, z: -8 }}
-        />
+          : <Entity
+              class="clickable"
+              geometry={{ primitive: 'plane', width: 3, height: 2 }}
+              material={{ color: 'white', opacity: 0 }}
+              position={{ x: 2, y: 2, z: -2 }}
+              text={{
+                value: 'START',
+                align: 'center',
+                anchor: 'align',
+                baseline: 'center',
+                width: 15,
+                letterSpacing: 5
+              }}
+              events={{
+                click: this.startGame
+              }}
+            />}
 
         <Entity position={{ x: 2, y: 3, z: 10 }}>
           <Entity primitive="a-camera" wasd-controls-enabled={false}>
             <Entity
               primitive="a-cursor"
               cursor={{
-                fuse: true,
+                color: 'white',
+                fuse: false,
                 fuseTimeout: 500
+              }}
+              material={{
+                color: 'white',
+                shader: 'flat'
               }}
               event-set__1="_event: mouseenter; color: black"
               event-set__2="_event: mouseleave; color: white"
