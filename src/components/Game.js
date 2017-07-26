@@ -176,6 +176,30 @@ export default class Game extends Presenter {
             />
           : <Entity />}
 
+        {!ready
+          ? <Entity>
+              {lights.map((row, y) =>
+                row.map((col, x) =>
+                  <Entity
+                    primitive="a-plane"
+                    height={Math.floor(Math.random() * 3)}
+                    width={Math.floor(Math.random() * 3)}
+                    src={`#${textures[y][x]}`}
+                    material={{
+                      color: 'white',
+                      opacity: Math.random()
+                    }}
+                    position={{
+                      x: -5 + Math.floor(Math.random() * 15),
+                      y: -2.5 + Math.floor(Math.random() * 15),
+                      z: Math.floor(Math.random() * 4)
+                    }}
+                  />
+                )
+              )}
+            </Entity>
+          : <Entity />}
+
         {hasWon
           ? <Entity class="clickable">
               <Entity
