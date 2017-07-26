@@ -24,8 +24,8 @@ let bloomPass = new THREE.BloomBlendPass(
 )
 
 let staticPass = new ShaderPass(THREE.StaticShader)
-staticPass.uniforms['amount'].value = 0.04
-staticPass.uniforms['size'].value = 2.0
+staticPass.uniforms['amount'].value = 0.02
+staticPass.uniforms['size'].value = 1.0
 staticPass.uniforms['time'].value = Math.random() * 2
 
 /**

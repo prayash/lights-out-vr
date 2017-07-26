@@ -111,7 +111,7 @@ export default class Game extends Presenter {
           : <Entity>
               <Entity
                 class="clickable"
-                primitive="a-box"
+                geometry={{}}
                 material={{ color: 'white' }}
                 position={{ x: 2, y: 2, z: -2 }}
                 events={{
@@ -133,7 +133,10 @@ export default class Game extends Presenter {
           <Entity primitive="a-camera" wasd-controls-enabled={false}>
             <Entity
               primitive="a-cursor"
-              fuse="true"
+              cursor={{
+                fuse: true,
+                fuseTimeout: 500
+              }}
               event-set__1="_event: mouseenter; color: black"
               event-set__2="_event: mouseleave; color: white"
               raycaster="objects: .clickable"
