@@ -14,7 +14,7 @@ const Game = {
       lights: createRandomMatrix(5, 'EASY'),
       mode: 'EASY',
       moves: 0,
-      ready: false,
+      ready: true,
       showInfo: false,
       showSettings: false,
       timeElapsed: 0

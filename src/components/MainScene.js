@@ -96,7 +96,7 @@ AFRAME.registerSystem('effects', {
 
 const MainScene = ({ children }) => {
   return (
-    <Scene stats effects antialias={false}>
+    <Scene effects antialias={false}>
       {children}
     </Scene>
   )
