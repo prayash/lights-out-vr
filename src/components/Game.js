@@ -139,10 +139,17 @@ export default class Game extends Presenter {
                     }}
                     rotation={{ x: 0, y: 0, z: 0 }}
                     events={{
-                      click: this.handleClick
+                      click: this.handleClick,
+                      mouseenter: this.playHoverSound
                     }}
                     event-set__1="_event: mouseenter; material.opacity: 0.99"
                     event-set__2="_event: mouseleave; material.opacity: 0.75"
+                    sound={{
+                      on: 'click',
+                      src: '#toggleSound',
+                      poolSize: 3,
+                      volume: 3
+                    }}
                   />
                 )
               )}
