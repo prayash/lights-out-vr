@@ -142,7 +142,7 @@ export default class Game extends Presenter {
                       on: 'click',
                       src: '#toggleSound',
                       poolSize: 3,
-                      volume: 3
+                      volume: 4
                     }}
                     events={{
                       click: this.handleClick,
