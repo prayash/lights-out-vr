@@ -45,6 +45,7 @@ AFRAME.registerSystem('effects', {
 
     const scene = sceneEl.object3D
     const renderer = sceneEl.renderer
+    renderer.setPixelRatio(window.devicePixelRatio)
     const camera = sceneEl.camera
 
     const composer = new EffectComposer(renderer)
@@ -96,7 +97,7 @@ AFRAME.registerSystem('effects', {
 
 const MainScene = ({ children }) => {
   return (
-    <Scene effects antialias={false}>
+    <Scene effects antialias={true}>
       {children}
     </Scene>
   )
