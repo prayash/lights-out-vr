@@ -59,7 +59,7 @@ const Game = {
       games: state.games + 1,
       moves: 0,
       hasWon: false,
-      lights: createRandomMatrix(5, 'EASY'),
+      lights: createRandomMatrix(5, '!EASY'),
       textures: createTextureMatrix(5),
       timeElapsed: 0
     }

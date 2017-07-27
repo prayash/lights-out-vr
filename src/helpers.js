@@ -15,8 +15,6 @@ export const createTextureMatrix = (size = 5) => {
     mat.push(row)
   }
 
-  console.log(mat)
-
   return mat
 }
 
@@ -26,7 +24,7 @@ export const createTextureMatrix = (size = 5) => {
  * @param {String} mode - The difficulty mode, EASY by default
  * @return {Array<Array>} - 2D array which represents the Lights Out matrix
  */
-export const createRandomMatrix = (size = 5, mode = 'EASY') => {
+export const createRandomMatrix = (size = 5, mode) => {
   let mat = []
 
   if (mode === 'EASY') {
