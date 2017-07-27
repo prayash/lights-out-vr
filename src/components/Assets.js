@@ -33,7 +33,6 @@ const Assets = () => {
       <img crossOrigin id="hstrips" src={hstrips} />
       <img crossOrigin id="vstrips" src={vstrips} />
       <img crossOrigin id="dots" src={dots} />
-      <img crossOrigin id="waves" src={waves} />
       <audio crossOrigin id="glowSound" src={glowSound} />
       <audio crossOrigin id="toggleSound" src={toggleSound} />
     </a-assets>

@@ -14,6 +14,8 @@ const Timer = ({ time }) => {
     <Entity
       text={{ value: template.render(date), width: 24 }}
       position={{ x: 22, y: 0.5, z: -4 }}
+      animation__opacity="property: material.opacity; dur: 3000;
+        easing: easeInCubic; loop: false; from: 0; to: 0.75"
     />
   )
 }

@@ -9,14 +9,15 @@ import {
 const Game = {
   getInitialState() {
     return {
+      games: 0,
       hasWon: false,
-      textures: createTextureMatrix(5),
       lights: createRandomMatrix(5, 'EASY'),
       mode: 'EASY',
       moves: 0,
       ready: false,
       showInfo: false,
       showSettings: false,
+      textures: createTextureMatrix(5),
       timeElapsed: 0
     }
   },
@@ -55,6 +56,7 @@ const Game = {
   resetGame(state) {
     return {
       ...state,
+      games: state.games + 1,
       moves: 0,
       hasWon: false,
       lights: createRandomMatrix(5, 'EASY'),

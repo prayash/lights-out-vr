@@ -12,8 +12,7 @@ const config = {
     'dstrips',
     'hstrips',
     'vstrips',
-    'dots',
-    'waves'
+    'dots'
   ]
 }
 

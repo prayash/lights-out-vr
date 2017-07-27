@@ -28,6 +28,7 @@ export default class Game extends Presenter {
 
   getModel() {
     return {
+      games: state => state.game.games,
       hasWon: state => state.game.hasWon,
       lights: state => state.game.lights,
       ready: state => state.game.ready,
@@ -70,7 +71,7 @@ export default class Game extends Presenter {
   }
 
   render(props, state, model) {
-    const { hasWon, lights, moves, ready, textures, timeElapsed } = model
+    const { games, hasWon, lights, moves, ready, textures, timeElapsed } = model
     const randWidth = this.getRandomArbitrary(1, 3)
 
     if (hasWon) {
@@ -130,26 +131,29 @@ export default class Game extends Presenter {
                     src={`#${textures[y][x]}`}
                     material={{
                       color: col === 1 ? 'white' : '#111111',
-                      opacity: 0.75
+                      opacity: moves || games ? 0.75 : 0
                     }}
                     position={{
                       x: x * config.SCALE + config.X_OFFSET,
                       y: y * config.SCALE + config.Y_OFFSET,
                       z: 0
                     }}
-                    rotation={{ x: 0, y: 0, z: 0 }}
-                    events={{
-                      click: this.handleClick,
-                      mouseenter: this.playHoverSound
-                    }}
-                    event-set__1="_event: mouseenter; material.opacity: 0.99"
-                    event-set__2="_event: mouseleave; material.opacity: 0.75"
                     sound={{
                       on: 'click',
                       src: '#toggleSound',
                       poolSize: 3,
                       volume: 3
                     }}
+                    events={{
+                      click: this.handleClick,
+                      mouseenter: this.playHoverSound
+                    }}
+                    event-set__1="_event: mouseenter; material.opacity: 0.99"
+                    event-set__2="_event: mouseleave; material.opacity: 0.75"
+                    animation__rotate="property: rotation; dur: 1000;
+                      easing: linear; loop: false; to: 360 0 0"
+                    animation__opacity="property: material.opacity; dur: 1500;
+                      easing: easeInSine; loop: false; from: 0; to: 0.75"
                   />
                 )
               )}
