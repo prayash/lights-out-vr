@@ -12,7 +12,6 @@ import {
 import config from '../config.js'
 
 import Assets from './Assets'
-import Intro from './Intro'
 import MainScene from './MainScene'
 import Moves from './Moves'
 import Particles from './Particles'
@@ -20,12 +19,6 @@ import Sky from './Sky'
 import Timer from './Timer'
 
 export default class Game extends Presenter {
-  componentDidMount() {
-    document.querySelector('a-assets').addEventListener('loaded', () => {
-      // this.repo.push(ready)
-    })
-  }
-
   getModel() {
     return {
       games: state => state.game.games,
@@ -39,8 +32,9 @@ export default class Game extends Presenter {
   }
 
   handleClick = e => {
+    // We wanna trigger a rotation on the target object here.
+    // Seems to be disconnected from the AFRAME instance.
     // e.target.sceneEl.object3D.rotation.set(50, 90, 180)
-    // console.log(e.target.sceneEl.object3D.rotation)
 
     if (this.model.moves === 0) {
       this.repo.push(startTimer)
@@ -97,25 +91,6 @@ export default class Game extends Presenter {
           intensity="2"
           position="2 6 4"
         />
-
-        {ready
-          ? <Entity
-              class="clickable"
-              primitive="a-plane"
-              height="1"
-              width="1"
-              src="#settings"
-              material={{
-                color: 'white',
-                opacity: 0.95
-              }}
-              position={{
-                x: 11,
-                y: 10,
-                z: -4
-              }}
-            />
-          : <Entity />}
 
         {ready
           ? <Entity>

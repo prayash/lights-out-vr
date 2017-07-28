@@ -87,6 +87,5 @@ export const verifyCompletion = mat => {
     }
   }
 
-  console.info('Won game.')
   return true
 }
